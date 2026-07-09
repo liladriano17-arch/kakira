@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Are My Safe Place • Khouloud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Great+Vibes&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Great+Vibes&amp;display=swap');
+
+        :root {
+            --pink: #f8c1d4;
+            --gold: #f0d29a;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .hero-bg {
+           background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('khould/khloud.png') center/cover no-repeat;
+        }
+
+        .glass {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .heart-float {
+            position: absolute;
+            font-size: 22px;
+            color: #f8c1d4;
+            animation: floatHeart 4.5s ease-in-out forwards;
+            pointer-events: none;
+            z-index: 50;
+            text-shadow: 0 0 8px rgba(248, 193, 212, 0.6);
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-650px) scale(0.4); opacity: 0; }
+        }
+
+        .section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading" class="fixed inset-0 bg-zinc-950 flex items-center justify-center z-[100]">
+        <div class="text-center">
+            <div class="text-4xl mb-6 cursive text-amber-200">A little piece of my heart is loading...</div>
+            <div class="w-64 h-1 bg-zinc-800 rounded-full mx-auto overflow-hidden">
+                <div id="loader-bar" class="h-full bg-gradient-to-r from-pink-300 via-amber-200 to-white w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass py-5">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-light tracking-widest">Khouloud ❤️</div>
+            <div class="flex gap-8 text-sm uppercase tracking-widest">
+                <a href="#about" onclick="smoothScrollTo('about')" class="hover:text-pink-300 transition-colors">About You</a>
+                <a href="#difficult" onclick="smoothScrollTo('difficult')" class="hover:text-pink-300 transition-colors">For You</a>
+                <a href="#reasons" onclick="smoothScrollTo('reasons')" class="hover:text-pink-300 transition-colors">Reasons</a>
+                <a href="#promise" onclick="smoothScrollTo('promise')" class="hover:text-pink-300 transition-colors">My Promise</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero" class="hero-bg min-h-screen flex items-center relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,#f8c1d430_0%,transparent_70%)]"></div>
+        <canvas id="canvas" class="absolute inset-0 pointer-events-none"></canvas>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 pt-20">
+            <div class="mb-8">
+                <span class="inline-block px-8 py-3 text-xs tracking-[4px] border border-amber-200/40 rounded-3xl text-amber-100">You Are My Safe Place</span>
+            </div>
+            
+            <h1 class="text-[130px] leading-[100px] font-light cursive text-transparent bg-clip-text bg-gradient-to-b from-white via-pink-100 to-amber-100 mb-8">
+                Khouloud
+            </h1>
+            
+            <div class="max-w-2xl mx-auto text-2xl md:text-3xl leading-tight text-amber-100/90 mb-14">
+                Even in your darkest moments, I want you to remember one thing...<br>
+                <span class="text-pink-200 font-medium">You will never face them alone.</span>
+            </div>
+
+            <div onclick="openMyHeart()" 
+                 class="inline-flex items-center gap-4 group cursor-pointer mx-auto">
+                <div class="w-20 h-20 rounded-3xl glass flex items-center justify-center text-5xl transition-all group-hover:scale-110 active:scale-95 shadow-xl">
+                    ❤️
+                </div>
+                <div class="text-left">
+                    <div class="text-xl tracking-[3px] text-amber-200 group-hover:text-white transition">OPEN MY HEART</div>
+                    <div class="text-xs text-pink-300">for Khouloud</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest opacity-70">
+            <div class="mb-3">SCROLL TO BEGIN YOUR JOURNEY</div>
+            <div class="w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-transparent"></div>
+        </div>
+
+        <div id="hearts-container" class="absolute inset-0 pointer-events-none"></div>
+    </section>
+
+    <!-- About Her -->
+    <section id="about" class="py-32 relative section">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline text-amber-200 text-sm tracking-widest mb-4">CHAPTER ONE</div>
+                <h2 class="text-6xl cursive text-pink-100">About My Khouloud</h2>
+            </div>
+            
+            <div class="glass rounded-3xl p-12 md:p-16 text-lg leading-relaxed max-w-3xl mx-auto">
+                <p class="mb-8">Khouloud, you are one of the most precious people in my life.</p>
+                <ul class="space-y-6 text-lg">
+                    <li class="flex gap-4 items-start"><span class="text-3xl mt-1">🌸</span> <span>You have been incredibly kind to me, even on days when I didn't deserve it.</span></li>
+                    <li class="flex gap-4 items-start"><span class="text-3xl mt-1">🤍</span> <span>You have supported me without always realizing how much it meant.</span></li>
+                    <li class="flex gap-4 items-start"><span class="text-3xl mt-1">✨</span> <span>You brought genuine happiness into my life when I needed it most.</span></li>
+                    <li class="flex gap-4 items-start"><span class="text-3xl mt-1">💫</span> <span>You became someone I deeply care about, more than words can express.</span></li>
+                    <li class="flex gap-4 items-start"><span class="text-3xl mt-1">❤️</span> <span>Most of all, I admire your beautiful heart more than anything else in this world.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- During This Difficult Time -->
+    <section id="difficult" class="py-32 bg-black/70 relative section">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+            <div class="text-pink-300 text-sm tracking-[3px] mb-6">FOR THE HARD DAYS</div>
+            <h2 class="text-5xl md:text-6xl leading-tight mb-12">I See You. I’m Here.</h2>
+            
+            <div class="text-xl leading-relaxed text-amber-100/90 max-w-2xl mx-auto">
+                I know life hasn't been easy for you lately. I know you're carrying things that many people can't see. I wish I could take away your pain, even for a little while. I can't promise to fix everything, but I can promise that you don't have to go through it alone.<br><br>
+                When you feel tired, lean on me.<br>
+                When you feel like giving up, let me remind you how strong you really are.<br>
+                When you doubt yourself, I'll remind you how amazing you are.<br>
+                Even on the days you don't smile, you'll still have someone who believes in you.
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons -->
+    <section id="reasons" class="py-32 relative section">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-6xl cursive mb-3">Reasons You Mean The World</h2>
+                <p class="text-pink-200">To me</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8" id="reasons-grid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Promise -->
+    <section id="promise" class="py-32 bg-gradient-to-b from-transparent via-pink-900/10 to-transparent relative section">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="glass rounded-3xl p-14 md:p-20 border border-pink-200/20 relative">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-6xl">💌</div>
+                <div class="cursive text-5xl text-amber-200 text-center mb-12 leading-none">My Dearest Khouloud,</div>
+                
+                <div class="text-lg leading-relaxed space-y-6 text-amber-100/90">
+                    <p>I don't know what tomorrow will bring, but I know one thing...</p>
+                    <p>I want to keep reminding you how valuable you are.</p>
+                    <p>I want to be the person who cheers for your victories, comforts you during your struggles, and stays beside you whenever you need someone.</p>
+                    <p>You deserve love.<br>You deserve peace.<br>You deserve happiness.</p>
+                    <p class="pt-6 text-right text-xl">And I hope one day I can help you smile the way you've made me smile.</p>
+                </div>
+                
+                <div class="text-right mt-12 text-pink-200 text-lg">
+                    — Forever yours
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ending -->
+    <section class="min-h-screen bg-black relative flex items-center overflow-hidden">
+        <canvas id="stars-canvas" class="absolute inset-0"></canvas>
+        
+        <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+            <div class="text-7xl mb-8">🌠</div>
+            <div class="text-4xl md:text-5xl leading-tight max-w-xl mx-auto mb-12">
+                No matter how dark the night becomes...<br>
+                <span class="text-pink-200">the stars never stop shining.</span><br><br>
+                And no matter how difficult life gets...<br>
+                I'll never stop caring about you.
+            </div>
+            
+            <div class="cursive text-6xl text-amber-100">With all my heart,</div>
+            <div class="text-2xl mt-3">— Your biggest supporter ❤️</div>
+            
+            <div onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                 class="mt-20 inline-flex items-center gap-2 text-xs tracking-widest cursor-pointer hover:text-pink-300 transition">
+                <span>BACK TO THE BEGINNING</span>
+                <i class="fa-solid fa-arrow-up"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Player -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 glass rounded-3xl px-6 py-4 shadow-2xl">
+        <button onclick="toggleMusic()" id="music-btn"
+                class="w-11 h-11 rounded-2xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-2xl transition-all active:scale-95">
+            ♫
+        </button>
+        <div>
+            <div class="text-pink-200 text-sm">Let Me Love You</div>
+            <div class="text-[10px] text-amber-200/70">• Playing for Khouloud</div>
+        </div>
+    </div>
+
+    <!-- YouTube Background Player -->
+    <div class="fixed bottom-6 left-6 z-40 hidden" id="youtube-player">
+        <iframe id="yt-iframe" width="0" height="0" 
+                src="khould/khld.png" 
+                allow="autoplay" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        function initTailwind() {}
+
+        function smoothScrollTo(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
+        }
+
+        function simulateLoading() {
+            const loader = document.getElementById('loader-bar');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 22;
+                if (progress > 100) progress = 100;
+                loader.style.width = `${progress}%`;
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('loading').style.opacity = '0';
+                        setTimeout(() => document.getElementById('loading').style.display = 'none', 600);
+                    }, 300);
+                }
+            }, 50);
+        }
+
+        function createFloatingHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.textContent = ['❤️','💖','💗','💓'][Math.floor(Math.random()*4)];
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            document.getElementById('hearts-container').appendChild(heart);
+            setTimeout(() => heart.remove(), 4800);
+        }
+
+        document.getElementById('hero').addEventListener('click', (e) => {
+            if (Math.random() > 0.25) createFloatingHeart(e.clientX, e.clientY);
+        });
+
+        const reasons = [
+            { icon: "❤️", title: "Your Kindness", desc: "It lights up every room you enter" },
+            { icon: "🌸", title: "Your Beautiful Heart", desc: "Pure and full of compassion" },
+            { icon: "🌙", title: "The Peace You Bring", desc: "My calm in every storm" },
+            { icon: "✨", title: "Your Smile", desc: "My favorite view in the world" },
+            { icon: "🤍", title: "The Way You Care", desc: "For everyone around you" },
+            { icon: "🌹", title: "Happiness You Gave", desc: "More than you’ll ever know" },
+            { icon: "💫", title: "Simply Being You", desc: "That’s more than enough" }
+        ];
+
+        function createReasons() {
+            const container = document.getElementById('reasons-grid');
+            container.innerHTML = '';
+            reasons.forEach((reason) => {
+                const div = document.createElement('div');
+                div.className = `glass rounded-3xl p-9 text-center transition-all hover:-translate-y-4 group`;
+                div.innerHTML = `
+                    <div class="text-6xl mb-7 transition group-hover:scale-125">${reason.icon}</div>
+                    <div class="text-2xl mb-3">${reason.title}</div>
+                    <div class="text-amber-200/70 text-sm">${reason.desc}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function createCanvasParticles() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            let particles = [];
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2.5 + 0.6;
+                    this.speedX = Math.random() * 0.6 - 0.3;
+                    this.speedY = Math.random() * 0.6 - 0.3;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = 'rgba(248, 193, 212, 0.75)';
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for(let i = 0; i < 90; i++) particles.push(new Particle());
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function createShootingStars() {
+            const canvas = document.getElementById('stars-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function drawBackgroundStars() {
+                ctx.fillStyle = '#ffffff';
+                for(let i = 0; i < 280; i++) {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * (canvas.height * 0.75);
+                    const sz = Math.random() * 2.4;
+                    ctx.globalAlpha = Math.random() * 0.7 + 0.4;
+                    ctx.fillRect(x, y, sz, sz);
+                }
+            }
+            drawBackgroundStars();
+
+            function shoot() {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.height = '2px';
+                star.style.background = 'linear-gradient(90deg, transparent, #f0d29a, #ffffff)';
+                star.style.top = Math.random() * 45 + '%';
+                star.style.left = Math.random() * 60 + '%';
+                star.style.width = (Math.random() * 180 + 90) + 'px';
+                star.style.opacity = '0.9';
+                star.style.transform = 'rotate(-25deg)';
+                document.querySelector('section:last-child').appendChild(star);
+                
+                setTimeout(() => star.remove(), 3800);
+            }
+
+            setInterval(() => { if (Math.random() > 0.35) shoot(); }, 1100);
+        }
+
+        let isPlaying = false;
+        let ytPlayerReady = false;
+
+        function toggleMusic() {
+            const iframe = document.getElementById('yt-iframe');
+            const container = document.getElementById('youtube-player');
+            container.classList.remove('hidden');
+            
+            if (!isPlaying) {
+                iframe.src = "khld.mp3";
+                document.getElementById('music-btn').innerHTML = '❚❚';
+                isPlaying = true;
+            } else {
+                iframe.src = "khld.mp3";
+                document.getElementById('music-btn').innerHTML = '♫';
+                isPlaying = false;
+            }
+        }
+
+        function openMyHeart() {
+            const hero = document.getElementById('hero');
+            hero.style.transition = 'all 2.8s cubic-bezier(0.23, 1, 0.32, 1)';
+            hero.style.transform = 'scale(0.93)';
+            hero.style.opacity = '0.65';
+            
+            setTimeout(() => {
+                document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    hero.style.transform = '';
+                    hero.style.opacity = '';
+                }, 1400);
+            }, 700);
+
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    createFloatingHeart(window.innerWidth * 0.4 + Math.random() * window.innerWidth * 0.3, window.innerHeight * 0.55);
+                }, i * 55);
+            }
+        }
+
+        function revealSections() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.18 });
+            
+            document.querySelectorAll('.section').forEach(sec => observer.observe(sec));
+        }
+
+        window.onload = function() {
+            simulateLoading();
+            createCanvasParticles();
+            createReasons();
+            createShootingStars();
+            revealSections();
+            
+            console.log('%c❤️ Made with love for Khouloud ❤️', 'color:#f8c1d4; font-family:Great Vibes; font-size:19px');
+        };
+    </script>
+</body>
+</html>
